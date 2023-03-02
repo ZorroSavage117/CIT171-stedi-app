@@ -52,7 +52,7 @@ return(
  
 );
   }else if(loggedInState==loggedInStates.LOGGED_IN){
-    return <Navigation/>
+    return <Navigation setLoggedInState={setLoggedInState}/>
   } else if(loggedInState==loggedInStates.NOT_LOGGED_IN){
     return (
       <View>
@@ -158,6 +158,8 @@ return(
      },
      title:{
       textAlign: "center",
-      marginTop: 50
+      marginTop: 20,
+      fontSize: 19,
+      color: "#A0CE4E"
      }    
  })
