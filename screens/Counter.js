@@ -200,6 +200,18 @@ const shareProgress = async() =>{
 console.log('Error', error)
     }
   }
+  const myLinkShare = async() =>{
+    const shareOptions = {
+      message: 'https://dev.stedi.me/timerhtml#' + userToken
+    }
+    try{
+      const shareResponse = await Share.share(shareOptions)
+      console.log(shareResponse);
+      }
+      catch(error){
+  console.log('Error', error)
+      }
+    }
   const data = useRef({
     x: 0,
     y: 0,
