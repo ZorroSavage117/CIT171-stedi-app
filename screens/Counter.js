@@ -11,6 +11,7 @@ import exerciseImg from '../image/exercise2.png';
 import ProgressBar from 'react-native-progress/Bar';
 import { FontAwesome5 } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { err } from 'react-native-svg/lib/typescript/xml';
 // import { Ionicons} from 'react-native-vector-icons';
 // import { Button } from 'react-native-elements';
 // import { IconButton } from 'react-native-paper';
@@ -22,6 +23,19 @@ export default function Counter(props) {
  const [score, setScore] = useState(0);
 
  const [currentScreen, setCurrentScreen] = useState('counter');
+
+ const mySpotterShare = async() => {
+  const shareOptions = {
+    message: 'https://dev.stedi.me/timer.html#' + token.current
+  }
+  try{
+    const shareResponse = await Share.share(shareOptions)
+    console.log(shareResponse);
+  }
+  catch(error){
+    console.log('Error', error)
+  }
+ }
 
  useEffect(()=>{//gets username and token from storage
   const getUserName = async ()=>{
@@ -339,6 +353,11 @@ elevation: 4}}>
     >
       <Text>{subscription ? 'Stop' : 'GO'}</Text>
      </TouchableOpacity>
+  <TouchableOpacity
+  onPress={mySpotterShare}
+  style={styles.button}>
+    <text>Add Spotter</text>
+  </TouchableOpacity>
 
      </CardContent>
      <ProgressBar progress={(stepCount * 0.50/30) + (completionCount * 0.50)} width={300} height={25} color={'#A0CE4E'} style={styles.bar}/>
